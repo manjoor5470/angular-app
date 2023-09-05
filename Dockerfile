@@ -25,4 +25,4 @@ CMD ["npm", "start"]
 #stage 2
 FROM nginx:alpine
 
-COPY --from=node /app/dist/demo-app /usr/share/nginx/html
+COPY --from=node /app/dist/my-first-project /usr/share/nginx/html
