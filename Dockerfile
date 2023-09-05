@@ -1,5 +1,5 @@
 # first fetch image of node.js from docker hub
-FROM node:14
+FROM node:18.17.1
 
 # set the working directory inside container
 WORKDIR /app
