@@ -21,3 +21,8 @@ EXPOSE 80
 
 # Define the command to start your Angular app
 CMD ["npm", "start"]
+
+#stage 2
+FROM nginx:alpine
+
+COPY --from=node /app/dist/demo-app /usr/share/nginx/html
