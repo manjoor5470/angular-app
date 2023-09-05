@@ -1,5 +1,6 @@
+### STAGE 1: Build ###
 # first fetch image of node.js from docker hub
-FROM node:18.17.1
+FROM node:18.17.1 AS build
 
 # set the working directory inside container
 WORKDIR /app
@@ -19,10 +20,9 @@ RUN npm run build --prod
 # Expose the port on which your Angular app runs (default is 80)
 EXPOSE 80
 
-# Define the command to start your Angular app
-CMD ["npm", "start"]
-
-#stage 2
+### STAGE 2: Run ###
 FROM nginx:alpine
 
-COPY --from=node /app/dist/my-first-project /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=build /app/dist/my-first-project /usr/share/nginx/html
